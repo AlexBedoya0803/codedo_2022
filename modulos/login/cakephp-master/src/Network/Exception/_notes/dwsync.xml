@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="InternalErrorException.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588800000000" remote="131220588800000000" />
+<file name="NotFoundException.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588800000000" remote="131220588800000000" />
+<file name="BadRequestException.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588800000000" remote="131220588800000000" />
+<file name="NotImplementedException.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588800000000" remote="131220588800000000" />
+<file name="UnavailableForLegalReasonsException.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588800000000" remote="131220588800000000" />
+<file name="MethodNotAllowedException.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588800000000" remote="131220588800000000" />
+<file name="SocketException.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588800000000" remote="131220588800000000" />
+<file name="HttpException.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588800000000" remote="131220588800000000" />
+<file name="ConflictException.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588800000000" remote="131220588800000000" />
+<file name="UnauthorizedException.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588800000000" remote="131220588800000000" />
+<file name="NotAcceptableException.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588800000000" remote="131220588800000000" />
+<file name="ServiceUnavailableException.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588800000000" remote="131220588800000000" />
+<file name="ForbiddenException.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588800000000" remote="131220588800000000" />
+<file name="GoneException.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588800000000" remote="131220588800000000" />
+<file name="InvalidCsrfTokenException.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588800000000" remote="131220588800000000" />
+</dwsync>

@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Documento sin t&iacute;tulo</title>
+<?php require_once('consulta_c.php');?>
+<link rel="stylesheet" href="../../auxiliar/actas_abiertas/_web.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../auxiliar/actas_abiertas/style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../js/calendar/style.css" type="text/css" media="screen" />
+<script type="text/javascript" src="../../../js/calendar/mootools-1.2-core.js"></script>
+<script type="text/javascript" src="../../../js/calendar/_class.datePicker.js"></script>
+<script type="text/javascript" src="../../../js/calendar/funciones/fecha2.js"></script>
+<script type="text/javascript" src="../../../js/funciones.js"></script>
+<style type="text/css">
+<!--
+.Estilo1 {color: #FFFFFF}
+-->
+</style>
+</head>
+<link rel="stylesheet" href="../../../estilos/cupertino/jquery-ui-1.8.12.custom.css">
+<link rel="stylesheet" href="../../../estilos/demos.css">
+<script src="../../../js/jquery-1.5.1.min.js"></script>
+<script src="../../../js/jquery-ui-1.8.12.custom.min.js"></script>
+<script>
+$(function() {$( "#fecha1" ).datepicker();});
+$(function() {$( "#fecha2" ).datepicker();});
+</script>
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <table width="101%" border="0">
+    <tr>
+      <td width="14%" bgcolor="#0A351C"><span class="Estilo1">Tipo de consulta </span></td>
+      <td width="86%" bgcolor="#0A351C"><span class="Estilo1">
+        <label>
+        <input name="Tipo" type="radio" onclick="Ocultar('compleja');Mostrar('simple');" value="opci&oacute;n" />
+          Simple</label>
+        <label></label>
+        <label></label>
+        <label>
+        <input name="Tipo" type="radio" onclick="Mostrar('compleja');Ocultar('simple')" value="opci&oacute;n" />
+          Avanzada </label>
+        <label></label>
+        <label>
+        <input name="Tipo" type="radio" onclick="Ocultar('compleja');Ocultar('simple')" value="opci&oacute;n" checked="checked" />
+          Oculto</label>
+      </span></td>
+    </tr>
+  </table>
+  <table width="100%" border="0" id="simple" style="display:none">
+    <tr>
+      <td width="23%" bgcolor="#E8E8FF">Palabra clave </td>
+      <td width="33%"><input name="palabra" type="text" id="palabra" size="50" /></td>
+      <td width="44%"><input name="consulta_simple" type="submit" class="button" id="consulta_simple" value="Consultar" /></td>
+    </tr>
+  </table>
+  <table width="100%" border="0" id="compleja" style="display:none">
+    <tr>
+      <td width="23%" bgcolor="#E8E8FF">Cedula</td>
+      <td width="77%"><label>
+        <input name="cedula" type="text" id="cedula" />
+      </label></td>
+    </tr>
+    <tr>
+      <td bgcolor="#E8E8FF">Nombre</td>
+      <td><input name="nombre" type="text" id="nombre" size="50" /></td>
+    </tr>
+    <tr>
+      <td bgcolor="#E8E8FF">Facultad</td>
+      <td><select name="facultades" id="facultades" >
+          <option value="" selected="selected"> </option>
+          <?php foreach($facultades as $facultad) { ?>
+          <option value="<?php echo $facultad->getId(); ?>"><?php echo $facultad->getNombre()?> </option>
+          <?php } ?>
+      </select></td>
+    </tr>
+    <tr>
+      <td bgcolor="#E8E8FF">Dedicaci&oacute;n</td>
+      <td><select name="dedicaciones" id="dedicaciones" >
+          <option value="" selected="selected"> </option>
+          <?php foreach($dedicaciones as $dedicacion) { ?>
+          <option value="<?php echo $dedicacion->getId(); ?>"><?php echo $dedicacion->getNombre();?> </option>
+          <?php } ?>
+      </select></td>
+    </tr>
+    <tr>
+      <td bgcolor="#E8E8FF">Fecha vinculacion</td>
+      <td><label>Desde:</label>
+        <input type="text" name="fecha1" id="fecha1" readonly="readonly" />
+        <label>hasta:</label>
+        <input type="text" name="fecha2" id="fecha2" readonly="readonly" />
+      </td>
+    </tr>
+    <tr>
+      <td bgcolor="#E8E8FF">&nbsp;</td>
+      <td><input name="consulta_compleja" type="submit" class="button" id="consulta_compleja" value="Consultar" /></td>
+    </tr>
+  </table>
+</form>
+  <iframe src="lista.php" name="contenido3" width="99%" height="500" scrolling="Auto" frameborder="0" id="contenido2"><a href="../../auxiliar/docentes/contenido3"></a></iframe>
+</body>
+</html>

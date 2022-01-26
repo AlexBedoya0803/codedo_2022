@@ -1,0 +1,8 @@
+    * :required el campo es obligatorio.
+    * :integer se aceptan números enteros.
+    * :float se aceptan números decimales.
+    * :length;n el campo debe tener n caracteres.
+    * :min_length;n se aceptan n caracteres como mínimo.
+    * :max_length;n se aceptan n caracteres como máximo.
+    * :accept el campo checkbox debe ser aceptado.
+    * :email el dato debe ser un email.

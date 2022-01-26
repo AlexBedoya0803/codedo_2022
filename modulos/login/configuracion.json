@@ -1,0 +1,10 @@
+{
+	"oauthCredencials": {
+		"client_id" :"deFDj24IQpBBuN5dy6hCScodedoI5M",
+		"redirect_uri":"http://avido.udea.edu.co/dedo/redirect.php",
+		"client_secret": "on140kb231rECVdI24OcDG06UnidTgeC",
+		"grant_type": "authorization_code",
+		"token_uri": "https://aprendeenlinea.udea.edu.co/oauth/?action=token"
+	}
+	
+}

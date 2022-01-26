@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="ControllerAuthorize.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588760000000" remote="131220588760000000" />
+<file name="BaseAuthorize.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588760000000" remote="131220588760000000" />
+<file name="PasswordHasherFactory.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588760000000" remote="131220588760000000" />
+<file name="FallbackPasswordHasher.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588760000000" remote="131220588760000000" />
+<file name="WeakPasswordHasher.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588770000000" remote="131220588770000000" />
+<file name="DefaultPasswordHasher.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588760000000" remote="131220588760000000" />
+<file name="DigestAuthenticate.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588760000000" remote="131220588760000000" />
+<file name="BaseAuthenticate.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588760000000" remote="131220588760000000" />
+<file name="FormAuthenticate.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588760000000" remote="131220588760000000" />
+<file name="AbstractPasswordHasher.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588760000000" remote="131220588760000000" />
+<file name="BasicAuthenticate.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588760000000" remote="131220588760000000" />
+</dwsync>

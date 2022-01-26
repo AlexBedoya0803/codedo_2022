@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="QueryCompiler.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588780000000" remote="131220588780000000" />
+<file name="SqliteCompiler.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588780000000" remote="131220588780000000" />
+<file name="FunctionsBuilder.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588780000000" remote="131220588780000000" />
+<file name="FieldTypeConverter.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588780000000" remote="131220588780000000" />
+<file name="TypeMapTrait.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588780000000" remote="131220588780000000" />
+<file name="TypeConverterTrait.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588780000000" remote="131220588780000000" />
+<file name="LICENSE.txt" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588780000000" remote="131220588780000000" />
+<file name="StatementInterface.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588780000000" remote="131220588780000000" />
+<file name="Connection.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588780000000" remote="131220588780000000" />
+<file name="IdentifierQuoter.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588780000000" remote="131220588780000000" />
+<file name="ValueBinder.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588790000000" remote="131220588790000000" />
+<file name="SqlserverCompiler.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588780000000" remote="131220588780000000" />
+<file name="TypeInterface.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588780000000" remote="131220588780000000" />
+<file name="TypedResultInterface.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588780000000" remote="131220588780000000" />
+<file name="SqlDialectTrait.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588780000000" remote="131220588780000000" />
+<file name="TypeMap.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588780000000" remote="131220588780000000" />
+<file name="composer.json" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588780000000" remote="131220588780000000" />
+<file name="Query.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588780000000" remote="131220588780000000" />
+<file name="ExpressionInterface.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588780000000" remote="131220588780000000" />
+<file name="Type.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588780000000" remote="131220588780000000" />
+<file name="Exception.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588780000000" remote="131220588780000000" />
+<file name="Driver.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588780000000" remote="131220588780000000" />
+<file name="TypedResultTrait.php" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588780000000" remote="131220588780000000" />
+<file name="README.md" server="avido.udea.edu.co//backup/admondoc/dedo/" local="131220588780000000" remote="131220588780000000" />
+</dwsync>
