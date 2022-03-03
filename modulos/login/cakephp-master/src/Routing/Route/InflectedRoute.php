@@ -72,7 +72,7 @@ class InflectedRoute extends Route
      *   directory.
      * @return string|false Either a string URL for the parameters if they match or false.
      */
-    public function match(array $url, array $context = [])
+    public function mmatch(array $url, array $context = [])
     {
         $url = $this->_underscore($url);
         if (!$this->_inflectedDefaults) {
@@ -80,7 +80,7 @@ class InflectedRoute extends Route
             $this->defaults = $this->_underscore($this->defaults);
         }
 
-        return parent::match($url, $context);
+        return parent::mmatch($url, $context);
     }
 
     /**

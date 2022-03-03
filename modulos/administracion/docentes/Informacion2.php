@@ -200,11 +200,11 @@ echo'<a href="historial.php?id='.$docente->getId().'"><img src="../../../imagene
     <!--
     <tr>
       <td bgcolor="#527497" class="Estilo8">Solicitud</td>
-      <td bgcolor="#527497"> <?php echo $nueva;?></td>
-      <td bgcolor="#527497"> <?php echo $prorroga;?></td>
-      <td bgcolor="#527497"> <?php echo $modificacion;?></td>
-      <td bgcolor="#527497"> <?php echo $otras;?></td>
-      <td bgcolor="#527497"> <?php echo $informe;?></td>
+      <td bgcolor="#527497"> <?php /* echo $nueva; */?></td>
+      <td bgcolor="#527497"> <?php /* echo $prorroga; */?></td>
+      <td bgcolor="#527497"> <?php /* echo $modificacion; */?></td>
+      <td bgcolor="#527497"> <?php /* echo $otras; */?></td>
+      <td bgcolor="#527497"> <?php /* echo $informe; */?></td>
     </tr>
     -->
     
@@ -228,7 +228,7 @@ echo'<a href="historial.php?id='.$docente->getId().'"><img src="../../../imagene
 		echo '
 	<tr>
     	<td colspan="6">
-        	<a style="background-color:#0A351C" href="#" class="button" onclick="activar(\'group1\')">Comisión nueva</a>
+        	<a style="background-color:#0A351C" href="#" class="button" onclick="activar(\'group1\')">Comisiï¿½n nueva</a>
        <div id="group1" style="display: none;">
        	<table cellpadding="10">
         	<tr><td><a href="../comisiones/RealizarSolicitud.php?tipoSolicitud=Nueva" class="button2" style="color:#000">Realizar Solicitud Nueva</a></td></tr>
@@ -263,7 +263,7 @@ echo'<a href="historial.php?id='.$docente->getId().'"><img src="../../../imagene
         </td>
     </tr>
     
-    <!-- Grupo Modificación -->
+    <!-- Grupo Modificaciï¿½n -->
     <tr>
     	<td colspan="6">
             <a style="background-color:#0A351C" href="#" class="button" onclick="activar(\'group3\')">Modificaci&oacute;n</a>
@@ -277,7 +277,7 @@ echo'<a href="historial.php?id='.$docente->getId().'"><img src="../../../imagene
         </td>
     </tr>
     
-    <!-- Grupo Terminación -->
+    <!-- Grupo Terminaciï¿½n -->
     <tr>
     	<td colspan="6">
             <a style="background-color:#0A351C" href="#" class="button" onclick="activar(\'group4\')">Cancelaci&oacute;n/Renuncia/Suspensi&oacute;n</a>
@@ -366,7 +366,7 @@ echo'<a href="historial.php?id='.$docente->getId().'"><img src="../../../imagene
       	</td>
       </tr>
       <tr>
-      	<td>Categoría:</td>
+      	<td>Categorï¿½a:</td>
       	<td>
       <select name="categoria">
       	<option value="1">Auxiliar</option>
@@ -380,7 +380,7 @@ echo'<a href="historial.php?id='.$docente->getId().'"><img src="../../../imagene
       	</td>
       </tr>
        <tr>
-      	<td>Dedicación:</td>
+      	<td>Dedicaciï¿½n:</td>
       	<td>
       <select name="dedicacion">
       	<option value="1">Medio tiempo</option>
@@ -389,7 +389,7 @@ echo'<a href="historial.php?id='.$docente->getId().'"><img src="../../../imagene
       	</td>
       </tr>
  	  <tr>
-        <td>Fecha de vinculación:</td>
+        <td>Fecha de vinculaciï¿½n:</td>
         <td bgcolor="#FFFFFF"><input type="date" name="fecha" id="fecha" required="required"/></td>
        </tr>
       <tr>

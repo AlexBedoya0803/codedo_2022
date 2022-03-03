@@ -12,9 +12,9 @@
 	
 	require_once('../../../configuracion/path.php');
 	$path=asignarPath(dirname(__FILE__));
-	require_once($path['modelo'].'criteria.php');
-	require_once($path['modelo'].'clasesDTO.php');
-	require_once($path['modelo'].'procedimientos.php');
+	require_once('../../../'.$path['modelo'].'criteria.php');
+	require_once('../../../'.$path['modelo'].'clasesDTO.php');
+	require_once('../../../'.$path['modelo'].'procedimientos.php');
 	require_once('UploadFiles.php');
 
 	//Consulta las solicitudes que estan registradas (estado=1) pertenecientes al docente conectado

@@ -7,8 +7,8 @@
 	
 	require_once('../../configuracion/path.php');
 	$path=asignarPath(dirname(__FILE__));
-	require_once($path['modelo'].'criteria.php');
-	require_once($path['modelo'].'clasesDTO.php');
+	require_once('../../'.$path['modelo'].'criteria.php');
+	require_once('../../'.$path['modelo'].'clasesDTO.php');
 	$id=$session->getVal("usuario_id");
 	$usuario = new DocenteDTO();
 	$usuario=$usuario->find($id);

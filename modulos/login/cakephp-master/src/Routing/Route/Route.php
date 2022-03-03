@@ -424,7 +424,7 @@ class Route
      *   directory and other url params.
      * @return string|false Either a string URL for the parameters if they match or false.
      */
-    public function match(array $url, array $context = [])
+    public function mmatch(array $url, array $context = [])
     {
         if (empty($this->_compiledRoute)) {
             $this->compile();

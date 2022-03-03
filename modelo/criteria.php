@@ -4,31 +4,32 @@ require_once('clasesDTO.php');
 
 class Criteria
 	{
-		var $conexion;
-		var $tabla;
-		var $order;
-		var $ordercampo;
-		var $filtros;
-		var $cont;
-		var $arraylist;
-		var $query;
-		var $result;
-		var $operador;
+		private $conexion;
+		private $tabla;
+		private $order;
+		private $ordercampo;
+		private $filtros;
+		private $cont;
+		private $arraylist;
+		private $query;
+		private $result;
+		private $operador;
 		
 		function Criteria($tabla){
-			$dao=new ObjetoDAO();
+			$dao = new ObjetoDAO();
 			$this->conexion=$dao->getConexion();
 			$this->tabla=$tabla;
 			$this->cont=0;
 			$this->order="";
 			$this->ordercampo="";
 			$this->operador="AND";
+			echo "<h1>HOLAAAAA</h1>";
 		}
 		
 		function executeQuery($query){
 			//echo $query;
 			//throw new Exception();
-			$resultado=mysql_query($query,$this->conexion);
+			$resultado=mysqli_query($this->conexion, $query);			
 			return $resultado;	
 		}
 		
@@ -51,28 +52,33 @@ class Criteria
 			$orderby="";
 			$select=" SELECT * FROM ".$this->tabla;
 		
-			if($this->cont > 0)
-			{
-			$where =" WHERE ";
-			foreach ($this->filtros as $filtro)
-			$where=$where." ".$filtro." ".$this->operador;
-			$where = substr($where,0,strlen($where)-4);
+			if($this->cont > 0) {
+				$where =" WHERE ";
+				$bandera = 0;
+				foreach ($this->filtros as $filtro) {
+					if($bandera > 0){
+						$where=$where." AND ".$filtro." ".$this->operador;
+					} else {
+						$where=$where." ".$filtro." ".$this->operador;
+					}					
+					$bandera += 1;
+				}
+				//$where = substr($where,0,strlen($where)-4);
 			}
 			
-			if($this->ordercampo!="")
-			$orderby=" ORDER BY ".$this->ordercampo." ".$this->order;
+			if($this->ordercampo!="") $orderby=" ORDER BY ".$this->ordercampo." ".$this->order;
 			$query=" $select $where $orderby;";
 			$this->query=$query;
-			$this->result=mysql_query($this->query,$this->conexion);
 			return $this->query;
 			
 		}
 		
 		function generarArraylist() {
-		    $this->result=mysql_query($this->query,$this->conexion);
+			$this->conexion = Conexion::Conectar();
+		    $this->result=mysqli_query($this->conexion, $this->query);
 			if(!($this->result))return array();
-			$filas = mysql_fetch_assoc($this->result);
-			$numFilas= mysql_num_rows($this->result);
+			$filas = mysqli_fetch_assoc($this->result);
+			$numFilas= mysqli_num_rows($this->result);
 			if($numFilas==0)
 			return array();
 			else
@@ -81,8 +87,15 @@ class Criteria
 		
 		function _count() {
 			$this->generarQuery();
-			$this->result=mysql_query($this->query,$this->conexion);
-			@$numFilas= mysql_num_rows($this->result);
+			$this->conexion = Conexion::Conectar();
+			$this->result = mysqli_query($this->conexion, $this->query);
+			echo $this->query;
+			foreach($this as $th){
+				echo "<br>";
+				print_r($th);
+				echo $this->tabla;
+			}
+			@$numFilas= mysqli_num_rows($this->result);
 			return $numFilas;
 		}
 		
@@ -108,7 +121,7 @@ class Criteria
 				$registro->setAnexo($filas['anexo']);
 				$this->arraylist[$cont2]=$registro;
 				$cont2++;
-				} while ($filas = mysql_fetch_assoc($this->result)); 
+				} while ($filas = mysqli_fetch_assoc($this->result)); 
 			}
 			if($this->tabla=="comisiones")
 			{ do { 
@@ -131,7 +144,7 @@ class Criteria
 				$registro->setFechaNotificacion($filas['fechaNotificacion']);
 				$this->arraylist[$cont2]=$registro;
 				$cont2++;
-				} while ($filas = mysql_fetch_assoc($this->result)); 
+				} while ($filas = mysqli_fetch_assoc($this->result)); 
 			}
 			if($this->tabla=="docentes")
 			{ do { 
@@ -151,7 +164,7 @@ class Criteria
 				$registro->setCorreo($filas['correo']);
 				$this->arraylist[$cont2]=$registro;
 				$cont2++;
-				} while ($filas = mysql_fetch_assoc($this->result)); 
+				} while ($filas = mysqli_fetch_assoc($this->result)); 
 			}
 			if($this->tabla=="estados")
 			{ do { 
@@ -161,7 +174,7 @@ class Criteria
 				$registro->setArchivo($filas['archivo']);
 				$this->arraylist[$cont2]=$registro;
 				$cont2++;
-				} while ($filas = mysql_fetch_assoc($this->result)); 
+				} while ($filas = mysqli_fetch_assoc($this->result)); 
 			}
 			if($this->tabla=="informes")
 			{ do { 
@@ -180,7 +193,7 @@ class Criteria
 				$registro->setFechaReingreso($filas['fechaReingreso']);
 				$this->arraylist[$cont2]=$registro;
 				$cont2++;
-				} while ($filas = mysql_fetch_assoc($this->result)); 
+				} while ($filas = mysqli_fetch_assoc($this->result)); 
 			}
 			if($this->tabla=="modificaciones")
 			{ do { 
@@ -199,7 +212,7 @@ class Criteria
 				$registro->setFecha2($filas['fecha2']);
 				$this->arraylist[$cont2]=$registro;
 				$cont2++;
-				} while ($filas = mysql_fetch_assoc($this->result)); 
+				} while ($filas = mysqli_fetch_assoc($this->result)); 
 			}
 			if($this->tabla=="motivos")
 			{ do { 
@@ -209,7 +222,7 @@ class Criteria
 				$registro->setTipo($filas['tipo']);
 				$this->arraylist[$cont2]=$registro;
 				$cont2++;
-				} while ($filas = mysql_fetch_assoc($this->result)); 
+				} while ($filas = mysqli_fetch_assoc($this->result)); 
 			}
 			if($this->tabla=="prorrogas")
 			{ do {
@@ -223,7 +236,7 @@ class Criteria
 				$registro->setFecha2($filas['fecha2']);
 				$this->arraylist[$cont2]=$registro;
 				$cont2++;
-				} while ($filas = mysql_fetch_assoc($this->result)); 
+				} while ($filas = mysqli_fetch_assoc($this->result)); 
 			}
 			if($this->tabla=="solicitudes")
 			{ do { 
@@ -261,7 +274,7 @@ class Criteria
 				$registro->setInforme($filas['informe']);
 				$this->arraylist[$cont2]=$registro;
 				$cont2++;
-				} while ($filas = mysql_fetch_assoc($this->result)); 
+				} while ($filas = mysqli_fetch_assoc($this->result)); 
 			}
 			if($this->tabla=="tipoSolicitudes")
 			{ do { 
@@ -270,7 +283,7 @@ class Criteria
 				$registro->setTipo($filas['tipo']);
 				$this->arraylist[$cont2]=$registro;
 				$cont2++;
-				} while ($filas = mysql_fetch_assoc($this->result)); 
+				} while ($filas = mysqli_fetch_assoc($this->result)); 
 			}
 			if($this->tabla=="dedicaciones")
 			{ do { 
@@ -280,7 +293,7 @@ class Criteria
 				$registro->setValor($filas['valor']);
 				$this->arraylist[$cont2]=$registro;
 				$cont2++;
-				} while ($filas = mysql_fetch_assoc($this->result)); 
+				} while ($filas = mysqli_fetch_assoc($this->result)); 
 			}
 			if($this->tabla=="categorias")
 			{ do { 
@@ -289,7 +302,7 @@ class Criteria
 				$registro->setCategoria($filas['categoria']);
 				$this->arraylist[$cont2]=$registro;
 				$cont2++;
-				} while ($filas = mysql_fetch_assoc($this->result)); 
+				} while ($filas = mysqli_fetch_assoc($this->result)); 
 			}
 			if($this->tabla=="facultades")
 			{ do { 
@@ -306,7 +319,7 @@ class Criteria
 				$registro->setSaludo($filas['saludo']);
 				$this->arraylist[$cont2]=$registro;
 				$cont2++;
-				} while ($filas = mysql_fetch_assoc($this->result)); 
+				} while ($filas = mysqli_fetch_assoc($this->result)); 
 			}
 			
 			if($this->tabla=="paises")
@@ -316,7 +329,7 @@ class Criteria
 				$registro->setPais($filas['pais']);
 				$this->arraylist[$cont2]=$registro;
 				$cont2++;
-				} while ($filas = mysql_fetch_assoc($this->result)); 
+				} while ($filas = mysqli_fetch_assoc($this->result)); 
 			}
 			
 			
@@ -327,7 +340,7 @@ class Criteria
 				$registro->setRespuesta($filas['nombre']);
 				$this->arraylist[$cont2]=$registro;
 				$cont2++;
-				} while ($filas = mysql_fetch_assoc($this->result)); 
+				} while ($filas = mysqli_fetch_assoc($this->result)); 
 			}
 			
 			if($this->tabla=="usuarios")
@@ -340,7 +353,7 @@ class Criteria
 				$registro->setClave($filas['clave']);
 				$this->arraylist[$cont2]=$registro;
 				$cont2++;
-				} while ($filas = mysql_fetch_assoc($this->result)); 
+				} while ($filas = mysqli_fetch_assoc($this->result)); 
 			 }
 				
 			if($this->tabla=="tiposComisiones")
@@ -350,7 +363,7 @@ class Criteria
 				$registro->setTipo($filas['tipo']);				
 				$this->arraylist[$cont2]=$registro;
 				$cont2++;
-				} while ($filas = mysql_fetch_assoc($this->result)); 
+				} while ($filas = mysqli_fetch_assoc($this->result)); 
 			 }	
 			 
 			if($this->tabla=="tiposSolicitudes") { 
@@ -360,7 +373,7 @@ class Criteria
 					$registro->setTipo($filas['tipo']);		
 					$this->arraylist[$cont2]=$registro;
 					$cont2++;
-				} while ($filas = mysql_fetch_assoc($this->result)); 
+				} while ($filas = mysqli_fetch_assoc($this->result)); 
 			}		
 	   	
 			 

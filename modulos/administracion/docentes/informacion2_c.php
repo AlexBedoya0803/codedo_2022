@@ -7,7 +7,7 @@ if($session->getVal("usuario_id")=="") //si no hay ningun usuario registrado mue
 	echo '<script>location.href="../../login/login-Copia.php";</script>'; //muestra la vista general
 require_once('../../../configuracion/path.php');
 $path=asignarPath(dirname(__FILE__));
-require_once($path['modelo'].'criteria.php');
+require_once('../../../'.$path['modelo'].'criteria.php');
 //require_once($path['modelo'].'validarMARES/validarUsuario.php');
 
 $consulta = new Criteria("docentes");

@@ -320,7 +320,7 @@ trait CollectionTrait
      * {@inheritDoc}
      *
      */
-    public function match(array $conditions)
+    public function mmatch(array $conditions)
     {
         return $this->filter($this->_createMatcherFilter($conditions));
     }
@@ -331,7 +331,7 @@ trait CollectionTrait
      */
     public function firstMatch(array $conditions)
     {
-        return $this->match($conditions)->first();
+        return $this->mmatch($conditions)->first();
     }
 
     /**

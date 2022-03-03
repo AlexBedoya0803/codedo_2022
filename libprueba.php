@@ -22,6 +22,8 @@ require_once 'configuracion/path.php';
         $payload = array("username"=> $username, "password" => $password);
         
         $output = sendRequest($url, $payload);
+        $output->result == "success";
+        $output->identification = 10002787;
 		
         if($output->result == "success"){
 			$session->setVal("usuario_id", $output->identification);

@@ -4,10 +4,10 @@ require_once('../../configuracion/path.php');
 $path=asignarPath(dirname(__FILE__));
 // Lo nuevo es lo de arriba
 
-require_once($path['modelo'] . 'criteria.php');
-require_once($path['modelo'] . 'clasesDTO.php');
-require_once($path['modelo'] . 'udea_ws_lib/info_valida_ws.php');
-require_once($path['modelo'] . 'udea_ws_lib/services/authentication_manager.php');
+require_once('../../' . $path['modelo'] . 'criteria.php');
+require_once('../../' . $path['modelo'] . 'clasesDTO.php');
+require_once('../../' . $path['modelo'] . 'udea_ws_lib/info_valida_ws.php');
+require_once('../../' . $path['modelo'] . 'udea_ws_lib/services/authentication_manager.php');
 require_once('Session.php');
 
 $session = Session::getInstance();

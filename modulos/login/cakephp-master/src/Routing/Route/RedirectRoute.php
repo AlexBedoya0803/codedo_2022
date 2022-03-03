@@ -104,7 +104,7 @@ class RedirectRoute extends Route
      * @param array $context Array of request context parameters.
      * @return bool Always false.
      */
-    public function match(array $url, array $context = [])
+    public function mmatch(array $url, array $context = [])
     {
         return false;
     }

@@ -239,7 +239,7 @@ class RouteCollection
      * @return string|false Either a string on match, or false on failure.
      * @throws \Cake\Routing\Exception\MissingRouteException when a route cannot be matched.
      */
-    public function match($url, $context)
+    public function mmatch($url, $context)
     {
         // Named routes support optimization.
         if (isset($url['_name'])) {
@@ -248,7 +248,7 @@ class RouteCollection
             $out = false;
             if (isset($this->_named[$name])) {
                 $route = $this->_named[$name];
-                $out = $route->match($url + $route->defaults, $context);
+                $out = $route->mmatch($url + $route->defaults, $context);
                 if ($out) {
                     return $out;
                 }

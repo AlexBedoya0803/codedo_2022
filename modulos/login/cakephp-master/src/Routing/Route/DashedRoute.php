@@ -93,7 +93,7 @@ class DashedRoute extends Route
      *   directory.
      * @return bool|string Either false or a string URL.
      */
-    public function match(array $url, array $context = [])
+    public function mmatch(array $url, array $context = [])
     {
         $url = $this->_dasherize($url);
         if (!$this->_inflectedDefaults) {
@@ -101,7 +101,7 @@ class DashedRoute extends Route
             $this->defaults = $this->_dasherize($this->defaults);
         }
 
-        return parent::match($url, $context);
+        return parent::mmatch($url, $context);
     }
 
     /**

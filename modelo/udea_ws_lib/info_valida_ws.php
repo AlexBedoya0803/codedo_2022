@@ -1,6 +1,6 @@
 <?php
 include 'util/math/BigInteger.php';
-require_once($path['modelo'].'validarMARES/WS/WSUsuario.php');
+require_once('../../' . $path['modelo'] . '/validarMARES/WS/WSUsuario.php');
 error_reporting(E_ALL);
 ini_set('display_errors',1);
 date_default_timezone_set('America/Bogota');

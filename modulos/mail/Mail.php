@@ -6,7 +6,8 @@
 	//require_once('../../configuracion/path.php');
 	$raiz = '/backup/admondoc/';
 	//$raiz = $_SERVER['DOCUMENT_ROOT'].'/';
-	require_once($raiz.'dedo/librerias/PHPMailer/PHPMailerAutoload.php');
+	require_once('../../../librerias/PHPMailer/PHPMailerAutoload.php');
+
 	class Mail{
 		
        		

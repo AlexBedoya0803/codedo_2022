@@ -320,10 +320,11 @@
 		}
 		
 		static function getChooser($id,$estado){
-			$consulta = new Criteria("comisiones");
+			$consulta = new Criteria();
+			$consulta->Criteria("comisiones");
 			$consulta->addFiltro("docente_id","=",$id);
 			$consulta->orderBy("id","DESC");
-			$comisiones=$consulta->execute();
+			$comisiones = $consulta->execute();
 			$salida='';
 			$salida.='
 				<tr><td width="178" bgcolor="#0A351C"><span class="Estilo8">*Comisiones:</span>

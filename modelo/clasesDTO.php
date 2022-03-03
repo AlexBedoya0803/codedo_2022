@@ -124,6 +124,7 @@ class ComisionDTO {
 	function setFechaf($nuevodato) { $this->fechaf=$nuevodato; }
 	function setObservaciones($nuevodato) { $this->observaciones=$nuevodato; }
 	function setFechaNotificacion($fecha){$this->fechaNotificacion = $fecha;}
+	
 	function getId() {
 		if($this->id) {
 			return $this->id;
@@ -1520,11 +1521,20 @@ class UsuarioDTO {
 	function find($id) {
 		$odao = new ObjetoDAO();
 		$fila=$odao->find("usuarios",$id);
-		$this->id=$fila['id'];
-		$this->cedula=$fila['cedula'];
-		$this->nombre=$fila['nombre'];
-		$this->clave=$fila['clave'];
-		$this->rol=$fila['rol'];
+
+		if($fila!==null) {
+			$this->id=$fila['id'];
+			$this->cedula=$fila['cedula'];
+			$this->nombre=$fila['nombre'];
+			$this->clave=$fila['clave'];
+			$this->rol=$fila['rol'];
+		} else {
+			$this->id = 0;
+			$this->cedula = "";
+			$this->nombre = "";
+			$this->clave = "";
+			$this->rol = "";
+		}
 		return $this;
 	}
 	

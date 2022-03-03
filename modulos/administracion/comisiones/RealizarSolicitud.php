@@ -40,20 +40,20 @@
 					
 				break;
 			case 'Prorroga';
-				$tipoSolicitud = "Prórroga";
+				$tipoSolicitud = "Prï¿½rroga";
 				$formulario = FormularioSolicitud::makeProrroga($session->getVal("usuario_id"),$comision);
 				break;
 			case 'ProrrogaExcepcional';
-				$tipoSolicitud = "Prórroga excepcional";
+				$tipoSolicitud = "Prï¿½rroga excepcional";
 				
 				$formulario = FormularioSolicitud::makeProrrogaExceptional($session->getVal("usuario_id"),$comision,'10');
 				break;
 			case 'Modificacion';
-				$tipoSolicitud = "Modificación";
+				$tipoSolicitud = "Modificaciï¿½n";
 				$formulario=FormularioSolicitud::makeModificacion($session->getVal("usuario_id"),$comision);
 				break;
 			case 'Cancelacion';
-				$tipoSolicitud = "Cancelación";
+				$tipoSolicitud = "Cancelaciï¿½n";
 				$formulario = FormularioSolicitud::makeProrrogaExceptional($session->getVal("usuario_id"),$comision,'5');
 				break;
 			case 'Renuncia';
@@ -61,7 +61,7 @@
 				$formulario = FormularioSolicitud::makeProrrogaExceptional($session->getVal("usuario_id"),$comision,'6');
 				break;
 			case 'Suspension';
-				$tipoSolicitud = "Suspensión";
+				$tipoSolicitud = "Suspensiï¿½n";
 				$formulario = FormularioSolicitud::makeProrrogaExceptional($session->getVal("usuario_id"),$comision,'7');
 				break;
 			case 'ReintegroConGrados';
@@ -156,14 +156,14 @@
 								echo $formulario;	
 								}else{ ?>
                          
-                                <p  class="Informacion">Actualmente tiene una solicitud de este tipo en espera de aval.<br> Puede realizar una modificación de esta o eliminarla.</p>
+                                <p  class="Informacion">Actualmente tiene una solicitud de este tipo en espera de aval.<br> Puede realizar una modificaciï¿½n de esta o eliminarla.</p>
 								<p align="center" class="Arial_12_B">Solicitud en espera de aval</p>
                                 
                                 
                                 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#000000">
                                   <tr>
                                     <td width="70" bgcolor="#0A351C"><div align="left"></div></td>
-                                    <td width="63" bgcolor="#0A351C" class="Estilo8">Número</td>
+                                    <td width="63" bgcolor="#0A351C" class="Estilo8">Nï¿½mero</td>
                                     <td width="117" bgcolor="#0A351C" class="Estilo8" align="center"><div align="left"> Objetivo</div></td>
                                     <td width="117" bgcolor="#0A351C" class="Estilo8">Pa&iacute;s</td>
                                     <td width="167"  bgcolor="#0A351C"><div align="left"><span class="Estilo8">Fecha de Inicio </span></div></td>

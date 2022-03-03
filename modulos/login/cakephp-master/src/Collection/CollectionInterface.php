@@ -532,7 +532,7 @@ interface CollectionInterface extends Iterator, JsonSerializable
      * and the value the condition against with each element will be matched
      * @return \Cake\Collection\CollectionInterface
      */
-    public function match(array $conditions);
+    public function mmatch(array $conditions);
 
     /**
      * Returns the first result matching all of the key-value pairs listed in

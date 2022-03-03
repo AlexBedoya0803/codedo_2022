@@ -1,9 +1,12 @@
 <?php
+
+include 'conexion.php';
+
 class ObjetoDAO {
 
 	private $conexion;
 
-	function ObjetoDAO() {
+	/* function ObjetoDAO() {
 
 		$host = "localhost";
 		//$db   = "dbDedo";
@@ -14,14 +17,18 @@ class ObjetoDAO {
 		$user = "dbaAndresD";
 		$pass = "db4AnD3sClave";
 		
-		$conexion = mysql_pconnect($host,$user, $pass)or trigger_error(mysql_error(),E_USER_ERROR);
-		mysql_select_db($db,$conexion);
-		mysql_query("SET NAMES 'ISO-8859-1'");
-		mysql_select_db($db,$conexion);
-		$this->conexion=$conexion;
-	}
+		$con = mysqli_connect('localhost', 'root', '', 'dbdedo');
+
+		if($con->connect_errno){
+			echo "Falló la conexión a MySql: (" . $con->connect_errno . ") " . $con->connect_error;
+			exit();
+		}
+
+		$this->conexion = $con;
+	} */
 
 	function getConexion(){
+		$this->conexion = Conexion::Conectar();
 		return $this->conexion;
 	}
 
@@ -32,7 +39,8 @@ class ObjetoDAO {
 				".$objeto->getAbierta().",
 				'".$objeto->getResolucion()."',
 				'".$objeto->getAnexo()."');";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();	
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 
 	function updateActa($objeto){
@@ -42,13 +50,15 @@ class ObjetoDAO {
 				resolucion = '".$objeto->getResolucion()."',
 				anexo = '".addslashes($objeto->getAnexo())."'
 				WHERE id = ".$objeto->getId().";";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 
 	function numeroSolicitudes($idActa){
 		$query="SELECT * FROM solicitudes WHERE acta_id = ".$idActa;
-		$resultado=mysql_query($query,$this->conexion);
-		return mysql_num_rows($resultado);
+		$this->conexion = Conexion::Conectar();
+		$resultado=mysqli_query($this->conexion, $query);
+		return mysqli_num_rows($resultado);
 	}
 	//funciones de Comisiones
 
@@ -69,8 +79,9 @@ class ObjetoDAO {
 				'".$objeto->getFecha2()."',
 				'".$objeto->getFechaf()."',
 				'".$objeto->getObservaciones()."');";
-		$result=mysql_query($query,$this->conexion);
-		echo mysql_error();
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
+		echo mysqli_error($this->conexion);
 	}
 
 	function updateComision($objeto){
@@ -90,7 +101,8 @@ class ObjetoDAO {
 			fechaf= '".$objeto->getFechaf()."',
 			observaciones = '".$objeto->getObservaciones()."'
 			WHERE id = ".$objeto->getId().";";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 	
 	function updateComision2($objeto){
@@ -111,7 +123,8 @@ class ObjetoDAO {
 			observaciones = '".$objeto->getObservaciones()."',
 			fechaNotificacion = '".$objeto->getFechaNotificacion()."'
 			WHERE id = ".$objeto->getId().";";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 
 	//funciones docentes
@@ -135,7 +148,8 @@ class ObjetoDAO {
 
 		//echo $query;
 		//throw new Exception();
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 
 
 
@@ -157,21 +171,24 @@ class ObjetoDAO {
 				nCCosto = '".$objeto->getNCCosto()."',
 				correo = '".$objeto->getCorreo()."'
 				WHERE id = ".$objeto->getId().";";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 
 	}
 
 	function numeroComisiones($cedulaDocente){
 		$query = "SELECT * FROM comisiones WHERE docente_id = '".$cedulaDocente."'";
-		$resultado=mysql_query($query,$this->conexion);
-		return mysql_num_rows($resultado);
+		$this->conexion = Conexion::Conectar();
+		$resultado=mysqli_query($this->conexion, $query);
+		return mysqli_num_rows($resultado);
 	}
 	
 	function numeroComisionesProxima($cedulaDocente){
 		$fechahoy=date("Y-n-j" );
 		$query = "SELECT * FROM comisiones WHERE docente_id = '".$cedulaDocente."' and fechaf >= '" .$fechahoy. "'";
-		$resultado=mysql_query($query,$this->conexion);
-		return mysql_num_rows($resultado);
+		$this->conexion = Conexion::Conectar();
+		$resultado=mysqli_query($this->conexion, $query);
+		return mysqli_num_rows($resultado);
 	}
 
 	//funciones estado
@@ -179,7 +196,8 @@ class ObjetoDAO {
 		$query = "INSERT INTO estados(estado, archivo)
 		values ('".$objeto->getEstado()."',
 				'".$objeto->getArchivo()."');";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 
 	function updateEstado($objeto) {
@@ -187,7 +205,8 @@ class ObjetoDAO {
 			estado = '".$objeto->getEstado()."',
 			archivo = '".$objeto->getArchivo()."'
 			WHERE id = ".$objeto->getId().";";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 
 	//funciones informes
@@ -204,7 +223,8 @@ class ObjetoDAO {
 				".$objeto->getObtuvoTitulo().",
 				'".$objeto->getInforme().",
 				'".$objeto->getFechaReingreso()."');";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 
 	function updateInforme($objeto) {
@@ -221,7 +241,8 @@ class ObjetoDAO {
 			informe = '".$objeto->getInforme()."',
 			fechaReingreso = '".$objeto->getFechaReingreso()."'
 			WHERE id = ".$objeto->getId().";";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 
 
@@ -239,7 +260,8 @@ class ObjetoDAO {
 				'".$objeto->getObjetivo()."',
 				'".$objeto->getFecha1()."',
 				'".$objeto->getFecha2()."');";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 
 	function updateModificacion($objeto) {
@@ -256,7 +278,8 @@ class ObjetoDAO {
 			fecha1 = '".$objeto->getFecha1()."',
 			fecha2 = '".$objeto->getFecha2()."'
 			WHERE id = ".$objeto->getId().";";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 
 
@@ -264,7 +287,8 @@ class ObjetoDAO {
 	function saveMotivo($objeto) {
 		$query = "INSERT INTO motivos(motivo, tipo)
 		values ('".$objeto->getMotivo()."', ".$objeto->getTipo().");";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 
 	function updateMotivo($objeto) {
@@ -272,7 +296,8 @@ class ObjetoDAO {
 		motivo = '".$objeto->getMotivo()."',
 		tipo = ".$objeto->getTipo()."
 		WHERE id = ".$objeto->getId().";";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 
 
@@ -285,7 +310,8 @@ class ObjetoDAO {
 				".$objeto->getFacultadId().",
 				'".$objeto->getFecha1()."',
 				'".$objeto->getFecha2()."');";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 
 	function updateProrroga($objeto) {
@@ -297,7 +323,8 @@ class ObjetoDAO {
 		fecha1 = '".$objeto->getFecha1()."',
 		fecha2 = '".$objeto->getFecha2()."'
 		WHERE id = ".$objeto->getId().";";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 
 
@@ -349,11 +376,12 @@ class ObjetoDAO {
 				'".$objeto->getFechaReingreso()."',
 				'".$objeto->getInforme()."',
 				".$objeto->getObtuvoTitulo().");";
-		$result=mysql_query($query,$this->conexion);
-		echo mysql_error();
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
+		echo mysqli_error($this->conexion);
 		echo '</br>'.$query;
 		//throw new Exception();
-		return mysql_insert_id();
+		return mysqli_insert_id($this->conexion);
 	}*/
 		$query = "INSERT INTO solicitudes(motivo_id, respuesta_id, tipoSolicitud_id, acta_id, docente_id, estado_id, dedicacion_id, pais_id, comision_id, facultad_id, tipoComision_id, objetivo, lugar, fecha1, fecha2, numeroActaCF, fechaActaCF, avalCF, solicitudProfesor, cartaAceptacion, informeEstudiante, informeTutor, calificaciones, comentarios, recomendacion, observaciones, votada, semaforo,fechaReingreso,informe ,obtuvoTitulo ,resolucion ,fechaResolucion ,inicioResolucion ,finResolucion)
 		values (".$objeto->getMotivoId().",
@@ -391,11 +419,12 @@ class ObjetoDAO {
 				'".$objeto->getFechaResolucion()."',
 				'".$objeto->getInicioResolucion()."',
 				'".$objeto->getFinResolucion()."';";
-		$result=mysql_query($query,$this->conexion);
-		echo mysql_error();
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
+		echo mysqli_error($this->conexion);
 		echo '</br>'.$query;
 		//throw new Exception();
-		return mysql_insert_id();
+		return mysqli_insert_id($this->conexion);
 	}
 
 	function saveSolicitud2($objeto){
@@ -437,11 +466,12 @@ class ObjetoDAO {
 		$query.=($objeto->getInicioResolucion()!=NULL)?'"'.$objeto->getInicioResolucion().'"':'NULL';$query.=',';
 		$query.=($objeto->getFinResolucion()!=NULL)?'"'.$objeto->getFinResolucion().'"':'NULL';
 		$query.=");";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 		//echo $query;
-		//echo mysql_error();
+		//echo mysqli_error($this->conexion);
 		//throw new Exception();
-		return mysql_insert_id();
+		return mysqli_insert_id($this->conexion);
 		
 		/*
 		$query = "INSERT INTO solicitudes(motivo_id, respuesta_id, tipoSolicitud_id, acta_id, docente_id, estado_id, dedicacion_id, pais_id, comision_id, facultad_id, tipoComision_id, objetivo, lugar, fecha1, fecha2, numeroActaCF, fechaActaCF, avalCF, solicitudProfesor, cartaAceptacion, resolucionDeAdmision, informeEstudiante, informeTutor, calificaciones, comentarios, recomendacion, observaciones, votada, semaforo,fechaReingreso,informe,obtuvoTitulo)
@@ -479,11 +509,12 @@ class ObjetoDAO {
 		$query.=($objeto->getInforme()!=NULL)?'"'.$objeto->getInforme().'"':'NULL';$query.=',';
 		$query.=($objeto->getObtuvoTitulo()!=NULL)?'"'.$objeto->getObtuvoTitulo().'"':'NULL';
 		$query.=");";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 		//echo $query;
-		//echo mysql_error();
+		//echo mysqli_error($this->conexion);
 		//throw new Exception();
-		return mysql_insert_id();*/
+		return mysqli_insert_id($this->conexion);*/
 	}
 
 
@@ -525,7 +556,8 @@ class ObjetoDAO {
 			 inicioResolucion= '".$objeto->getInicioResolucion()."',
 			 finResolucion= '".$objeto->getFinResolucion()."'
 			 WHERE id = ".$objeto->getId();
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 		/*
 		$query = "UPDATE solicitudes SET
 			 motivo_id= ".$objeto->getMotivoId().",
@@ -561,8 +593,9 @@ class ObjetoDAO {
 			 fechaReingreso = '".$objeto->getFechaReingreso()."',
 			 informe= '".$objeto->getInforme()."'
 			 WHERE id = ".$objeto->getId();
-		$result=mysql_query($query,$this->conexion);*/
-		//echo mysql_error();
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);*/
+		//echo mysqli_error($this->conexion);
 		//echo $query;  
 		//throw new Exception();
 	}
@@ -609,9 +642,10 @@ class ObjetoDAO {
 
 		$query.=" where id=".$objeto->getId().";";
 		var_dump($query);
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 		//echo $query;
-		//echo mysql_error();
+		//echo mysqli_error($this->conexion);
 		//throw new Exception();
 	}
 
@@ -620,28 +654,32 @@ class ObjetoDAO {
 	function saveTipoSolicitud($objeto) {
 		$query = "INSERT INTO tiposSolicitudes(tipo)
 		values ('".$objeto->getTipo()."');";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 
 	function updateTipoSolicitud($objeto) {
 		$query = "UPDATE tiposSolicitudes SET
 		tipo = '".$objeto->getTipo()."'
 		WHERE id = ".$objeto->getId().";";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 
 	//funciones tipoComision
 	function saveTipoComision($objeto) {
 		$query = "INSERT INTO tiposComisiones(tipo)
 		values ('".$objeto->getTipo()."');";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 
 	function updateTipoComision($objeto) {
 		$query = "UPDATE tiposComisiones SET
 		tipo = '".$objeto->getTipo()."'
 		WHERE id = ".$objeto->getId().";";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 
 
@@ -649,7 +687,8 @@ class ObjetoDAO {
 	function saveDedicacion($objeto) {
 		$query = "INSERT INTO dedicaciones(nombre, valor)
 		values ('".$objeto->getNombre()."', '".$objeto->getValor()."');";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 
 	function updateDedicacion($objeto) {
@@ -657,7 +696,8 @@ class ObjetoDAO {
 		nombre = '".$objeto->getNombre()."',
 		valor = '".$objeto->getValor()."'
 		WHERE id = ".$objeto->getId().";";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 
 
@@ -665,14 +705,16 @@ class ObjetoDAO {
 	function saveCategoria($objeto) {
 		$query = "INSERT INTO categorias(categoria)
 		values ('".$objeto->getCategoria()."');";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 
 	function updateCategoria($objeto) {
 		$query = "UPDATE categorias SET
 		categoria = '".$objeto->getCategoria()."'
 		WHERE id = ".$objeto->getId().";";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 
 
@@ -688,7 +730,8 @@ class ObjetoDAO {
 				'".$objeto->getCargoDecano()."',
 				'".$objeto->getCorreos()."',
 				'".$objeto->getSaludo()."');";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 
 	function updateFacultad($objeto) {
@@ -703,21 +746,24 @@ class ObjetoDAO {
 		correos = '".$objeto->getCorreos()."',
 		saludo = '".$objeto->getSaludo()."'
 		WHERE id = ".$objeto->getId().";";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 
 	//funciones paises
 	function savePais($objeto) {
 		$query = "INSERT INTO paises(pais)
 		values ('".$objeto->getNombre()."');";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 
 	function updatePais($objeto) {
 		$query = "UPDATE paises SET
 		pais = '".$objeto->getNombre()."'
 		WHERE id = ".$objeto->getId().";";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 
 
@@ -725,14 +771,16 @@ class ObjetoDAO {
 	function saveRespuesta($objeto) {
 		$query = "INSERT INTO respuestas(respuesta)
 		values ('".$objeto->getNombre()."');";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 
 	function updateRespuesta($objeto) {
 		$query = "UPDATE respuestas SET
 		respuesta = '".$objeto->getNombre()."'
 		WHERE id = ".$objeto->getId().";";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 
 	//funciones usuario
@@ -742,7 +790,8 @@ class ObjetoDAO {
 				'".$objeto->getNombre()."',
 				'".$objeto->getClave()."',
 				'".$objeto->getRol().");";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 
 	function updateUsuario($objeto) {
@@ -752,25 +801,29 @@ class ObjetoDAO {
 		clave = '".$objeto->getClave()."',
 		rol = '".$objeto->getRol()."'
 		WHERE id = ".$objeto->getId().";";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////
 	//funciones para todas las tablas
 	function delete($tabla,$id) {
 		$query = "DELETE FROM ".$tabla."  WHERE id = '".$id."' " ;
-		$result = mysql_query($query,$this->conexion);
+		$result = mysqli_query($this->conexion, $query);
 	}
 
 	function find($tabla,$id) {
 		$query = "SELECT * FROM ".$tabla." WHERE id = '".$id."'";
 		//echo $query;
 		//throw new Exception();
-		$result=mysql_query($query,$this->conexion);
+		$this->getConexion();
+		$result = mysqli_query($this->conexion, $query);
 		if(!$result){
-			echo "error: ".mysql_error();
+			echo "error: ";//.mysqli_error();
 		}
-		$fila = mysql_fetch_assoc($result);
+
+		$fila = mysqli_fetch_assoc($result);
+
 		return $fila;
 	}
 
@@ -786,11 +839,15 @@ class ObjetoDAO {
 				$query .= " AND ".$campo3." = '".$valor3."'";
 		}
 		$query .= ";";
-		$result=mysql_query($query,$this->conexion);
-		$resultado=mysql_num_rows($result);
-		$fila = mysql_fetch_assoc($result);
+		$this->getConexion();
+		$this->conexion = Conexion::Conectar();		
+		$result=mysqli_query($this->conexion, $query);
+		$resultado=mysqli_num_rows($result);
+		$fila = mysqli_fetch_assoc($result);
 
-		return $fila['id'];
+		if($fila!==null) return $fila['id'];
+
+		return 0;
 	}
 
 	//funciones usuariosolicitudes
@@ -808,8 +865,9 @@ class ObjetoDAO {
 				ON DUPLICATE KEY UPDATE
 				votacion=$voto, comentarios='".$votacion->getComentarios()."';";
 		//echo $query."</br>";
-		$result=mysql_query($query,$this->conexion);
-		//echo mysql_error();
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
+		//echo mysqli_error($this->conexion);
 		//echo $voto;
 	}
 
@@ -820,28 +878,29 @@ class ObjetoDAO {
 		votacion = '".$votacion->getVotacion()."',
 		comentarios = '".$votacion->getComentarios()."'
 		WHERE usuario_id = ".$votacion->getUsuario_id()." and solicitud_id = ".$votacion->getSolicitud_id().";";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 	}
 
 	function findVotacion($usuario_id, $solicitud_id){
 	 	$query = "select * from votaciones where usuario_id= '$usuario_id' and solicitud_id = '$solicitud_id';";
-		$result=mysql_query($query,$this->conexion);
+		$this->conexion = Conexion::Conectar();		
+		$resultado=mysqli_query($this->conexion, $query);
 
-		if(!$result){
-			echo "no se puede ejecutar".mysql_error();
+		if(!$resultado){
+			echo "no se puede ejecutar".mysqli_error($this->conexion);
 		}
-		$resultado=mysql_num_rows($result);
-		$fila = mysql_fetch_array($result);
+		$result=mysqli_num_rows($resultado);
+		$fila = mysqli_fetch_array($resultado);
 		return $fila['votacion'];
 
 	}
 
 	function getVotaciones($soliciudId){
 		$query = "select * from votaciones where solicitud_id = $soliciudId";
-		$resultado = mysql_query($query,$this->conexion);
+		$resultado = mysqli_query($this->conexion, $query);
 		return $resultado;
-	}
-
+	}	
 
 }
 ?>

@@ -50,13 +50,13 @@ class PluginShortRoute extends InflectedRoute
      *   directory.
      * @return string|false Either a string URL for the parameters if they match or false.
      */
-    public function match(array $url, array $context = [])
+    public function mmatch(array $url, array $context = [])
     {
         if (isset($url['controller'], $url['plugin']) && $url['plugin'] !== $url['controller']) {
             return false;
         }
         $this->defaults['controller'] = $url['controller'];
-        $result = parent::match($url, $context);
+        $result = parent::mmatch($url, $context);
         unset($this->defaults['controller']);
 
         return $result;
